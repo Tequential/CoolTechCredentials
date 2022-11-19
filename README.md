@@ -1,5 +1,5 @@
 
-# CAR API
+# CoolTech Credential Repositoy
 
 A credential repository for Cooltech
 
