@@ -1,0 +1,92 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #031b48;
+  min-height: 10vh;
+  display: flex;
+  /*justify-content: center;*/
+  font-size:larger;
+  color: white;
+  flex-direction: column;
+  /*align-items: center;*/
+  overflow: hidden;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.App-container {
+  background-color: #43577b;
+  min-height: 100vh;
+  display: flex;
+  font-size:smaller;
+  color: #dae0eb;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.cars-container {
+  margin:20px;
+}
+
+.section {
+  background-color: #c6d7f6;
+  margin:10px;
+  border-radius: 2px;
+}
+
+.inner {
+  margin:20px;
+}
+
+.btn {
+  border-color:#43577b;
+  margin-left:2px;
+  margin-right:2px;
+}
+
+.header-btn {
+  color: white;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+a:link {
+  color:rgb(222, 207, 121) ;
+  text-decoration: none !important;
+}
+
+.entry {
+  margin-bottom: 5px;
+}
+
+.header {
+  font-size: larger;
+  margin-left:5px;
+}
+
+.rmsc {
+  --rmsc-main: #0c0d0f !important;
+  --rmsc-hover: #f1f3f5;
+  --rmsc-selected: #21252a !important;
+  --rmsc-border: rgb(33, 25, 25);
+  --rmsc-gray: rgb(42, 35, 35) !important;
+  --rmsc-bg: rgb(17, 16, 16) ;
+  --rmsc-p: 10px; /* Spacing */
+  --rmsc-radius: 4px; /* Radius */
+  --rmsc-h: 38px; /* Height */
+}
