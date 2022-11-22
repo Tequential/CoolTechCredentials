@@ -106,6 +106,9 @@ function Credentials({ setUsers, ouDivisionList, setOUdivisionList, setDisplayEd
 
       <div className="row">
         <div className="col-2">
+          <h5>OU-Division</h5>
+        </div>
+        <div className="col-2">
           <h5>Website</h5>
         </div>
         <div className="col-2">

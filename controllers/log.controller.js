@@ -9,7 +9,7 @@ exports.login = function (req, res) {
   const email = (req.body.email)
   const password = (req.body.password)
 
-  User.where("email").equals(email).then(result => {
+  User.where({email: email}).then(result => {
     if (result.length > 0 && (result[0].password === password)) {
       payload = {
         id: result[0].id,
@@ -26,6 +26,7 @@ exports.login = function (req, res) {
     } else {
       res.status(403).send({ 'err': 'Your username or password is incorrect' })
     }
+    
   }
   );
 
@@ -84,6 +85,7 @@ exports.createUser = function (req, res) {
 //create new credentials
 exports.createCredentials = function (req, res) {
   const OUdivision = (req.body.OUdivision);
+  const OUDivisionID = (req.body.OUDivisionID);
   const website = (req.body.website);
   const username = (req.body.username);
   const password = (req.body.password);
@@ -91,6 +93,7 @@ exports.createCredentials = function (req, res) {
 
   const newCredential = new Credentials({
     OUdivision: OUdivision,
+    OUDivisionID: OUDivisionID,
     website: website,
     username: username,
     password: password,
@@ -104,11 +107,13 @@ exports.createCredentials = function (req, res) {
     } else {
       console.log('New credentials added');
       payload = {
+  
         OUdivision: OUdivision,
         website: website,
         username: username,
         password: password,
-        archived: archived
+        archived: archived,
+        OUDivisionID: OUDivisionID
       }
 
     }

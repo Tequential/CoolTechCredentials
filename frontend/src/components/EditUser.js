@@ -3,11 +3,10 @@ import React from 'react'
 import { useState } from 'react'
 import { MultiSelect } from "react-multi-select-component";
 
-function EditUser({ ouDivisionList, setDisplayEditUser, setLoading, setError, users }) {
+function EditUser({ ouDivisionList, setDisplayEditUser, setLoading, setError, users, userRoles, setUserRoles }) {
 
   //state variables
   const [edit, setEdit] = useState("false")
-  const [userRoles, setUserRoles] = useState([]);
   const [selected, setSelected] = useState([]);
   const [userOUs, setUserOUs] = useState([]);
   const [newRole, setNewRole] = useState('');
@@ -32,7 +31,7 @@ function EditUser({ ouDivisionList, setDisplayEditUser, setLoading, setError, us
     setLoading(true);
     setSelected(divisionsUser);
     selected.map((item) => {
-      if (item != false) {
+      if (item !== false) {
         selectedOUArray.push(item.value)
       }
     })
@@ -90,9 +89,9 @@ function EditUser({ ouDivisionList, setDisplayEditUser, setLoading, setError, us
           </div>
           <div className="col-2" >
             <select className="form-control" disabled={edit.id === user._id ? false : true} onChange={(e) => setNewRole(e.target.value)} required>
-              <option defaultValue={user.role === "admin" && "selected"} value="admin">admin</option>
-              <option defaultValue={user.role === "manager" && "selected"} value="manager">manager</option>
-              <option defaultValue={user.role === "normal" && "selected"} value="normal">normal</option>
+              <option selected ={user.role === "admin" ? "selected" : ""} value="admin">admin</option>
+              <option selected ={user.role === "manager" ? "selected" : ""} value="manager">manager</option>
+              <option selected ={user.role === "normal" ? "selected" : ""}  value="normal">normal</option>
             </select>
           </div>
           <div className="col-2">{edit.id === user._id && users.id !== user._id ?

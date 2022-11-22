@@ -1,14 +1,14 @@
 import { api } from "./api";
 import React, { useState } from 'react'
 
-function CreateCredentials({ ouDivisionList, setDisplayAddNew, error, setError, setLoading}) {
+function CreateCredentials({ ouDivisionList, credentials, setDisplayAddNew, error, setError, setLoading }) {
   //state variables
 
   const [newOUdivision, setNewOUdivision] = useState("News Management - IT"); //default division
   const [newWebsite, setNewWebsite] = useState("");
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [newOUDivisionID, setNewOUdivisionID] = useState("");
+  const [newOUDivisionID, setNewOUdivisionID] = useState("6373c281b77a5b6bbc926d44"); //default ID
 
   //add new credentials
   function addCredentials(newUsername, newWebsite, newPassword, newOUdivision, newOUDivisionID) {
@@ -22,6 +22,23 @@ function CreateCredentials({ ouDivisionList, setDisplayAddNew, error, setError, 
       setError("error fetching credential list");
     }
 
+  }
+
+  //create an array of OUs that the user has access to
+  const userOUs = [];
+  credentials.map(OUid => {
+    if (userOUs.indexOf(OUid.OUDivisionID) === -1) {
+      userOUs.push(OUid.OUDivisionID)
+    }
+  });
+
+  //get the id/value of the OU - Division selected
+  const handleId = (e) => {
+    const index = e.target.selectedIndex;
+    const el = e.target.childNodes[index]
+    const option = el.getAttribute('id');
+    setNewOUdivision(e.target.value);
+    setNewOUdivisionID(option)
   }
 
   //render the new credentials form
@@ -65,9 +82,10 @@ function CreateCredentials({ ouDivisionList, setDisplayAddNew, error, setError, 
           Organisational Unit & Division:
         </div>
         <div className="col-6">
-          <select className="form-control" onChange={(e) => { setNewOUdivision(e.target.value); setNewOUdivisionID(e.target.id) }}>
+          <select className="form-control" onChange={(e) => handleId(e)}>
             {ouDivisionList.map(item => {
               return (
+                userOUs.indexOf(item._id) > -1 &&
                 <option key={item._id} id={item._id} value={item.division} >{item.division}</option>
               );
             })}
@@ -76,7 +94,7 @@ function CreateCredentials({ ouDivisionList, setDisplayAddNew, error, setError, 
       </div>
       <div className="row entry">
         <div className="col-2 offset-10">
-          <button className="btn btn-info" onClick={(e) => addCredentials(newUsername, newWebsite, newPassword, newOUdivision)}>
+          <button className="btn btn-info" onClick={(e) => addCredentials(newUsername, newWebsite, newPassword, newOUdivision, newOUDivisionID)}>
             Add New</button></div>
       </div>
     </div>

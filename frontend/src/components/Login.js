@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { api } from "./api";
 function Login({ setLoggedin, setDisplayRegistered, displayRegistered, loginUser, setLoginUser, setLoading, setError }) {
 
@@ -7,14 +6,17 @@ function Login({ setLoggedin, setDisplayRegistered, displayRegistered, loginUser
     setLoading(true);
     api(`/cooltech/login`, "POST", user)
       .then(result => {
-        sessionStorage.setItem("jwt", result.token);
-        setLoggedin(true);
-        setError(false);
-        setLoading(false);
-      },
-        (error) => {
-          setError(error);
-        });
+        if ("err" in result) {
+          setError("You are not registered :( - please check that your username and password are correct");
+          setLoading(false);
+        } else {
+          sessionStorage.setItem("jwt", result.token);
+          setError(false);
+          setLoading(false);
+          setLoggedin(true);
+        }
+      }
+      );
   }
 
   const handleLogin = () => {

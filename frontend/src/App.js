@@ -24,6 +24,8 @@ function App() {
   const [role, setRole] = useState([]);
   const [displayEditUser, setDisplayEditUser] = useState(false);
   const [users, setUsers] = useState([]);
+  const [userRoles, setUserRoles] = useState([]);
+  const [userDetails, setUserDetails] = useState([]);
 
   //render all components based on state
   return (
@@ -40,15 +42,15 @@ function App() {
           <Credentials setUsers={setUsers} setDisplayEditUser={setDisplayEditUser}
           role={role} setRole={setRole} ouDivisionList={ouDivisionList} setOUdivisionList={setOUdivisionList} setLoading={setLoading} 
           setError={setError} loginUser={loginUser} displayAdd={displayAdd} setDisplayAdd={setDisplayAdd} credentials={credentials} 
-          setCredentials={setCredentials} setDisplayAddNew={setDisplayAddNew} />}
+          setCredentials={setCredentials} userDetails={userDetails} setUserDetails={setUserDetails} setDisplayAddNew={setDisplayAddNew} />}
 
         {displayAddNew && loggedin && 
-          <CreateCredentials setDisplayAddNew={setDisplayAddNew} ouDivisionList={ouDivisionList} error={error}
-          setError={setError} loading={loading} setLoading={setLoading} credentials={credentials} setCredentials={setCredentials} /> }
+          <CreateCredentials setDisplayAddNew={setDisplayAddNew} userDetails={userDetails} ouDivisionList={ouDivisionList} error={error}
+          setError={setError} loading={loading} users={users} setLoading={setLoading} credentials={credentials} setCredentials={setCredentials} /> }
 
         {displayEditUser && loggedin && 
           <EditUser setDisplayEditUser={setDisplayEditUser} setError={setError} setLoading={setLoading} 
-          users={users} ouDivisionList={ouDivisionList} />}
+          users={users} ouDivisionList={ouDivisionList} userRoles={userRoles} setUserRoles={setUserRoles}/>}
 
       </div>
     </div>

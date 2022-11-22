@@ -1,9 +1,6 @@
 const mongoose = require("mongoose")
 
 const credentialSchema = new mongoose.Schema({
-    OUDivisionID: {
-        type: String
-    },
     OUdivision: {
         type: String
     },
@@ -16,6 +13,9 @@ const credentialSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    OUDivisionID: {
+        type: String
     },
     dateCreated: {
         type: Date,
